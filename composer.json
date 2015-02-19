@@ -1,0 +1,41 @@
+{
+    "name": "radic/support",
+    "description": "Laravel package providing additional Blade extensions: foreach (with $loop data like twig), break, continue, set,array (multiline), etc",
+    "homepage": "https://github.com/RobinRadic/blade-extensions",
+    "keywords": [
+        "loop",
+        "extensions",
+        "blade",
+        "laravel"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robin Radic",
+            "email": "robin@radic.nl",
+            "role": "Package Author/Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "laravel/framework": "5.0.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.0.*",
+        "barryvdh/laravel-ide-helper": "2.*",
+        "raveren/kint": "0.9.*"
+    },
+    "scripts": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Radic\\Support": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Radic\\SupportTests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable"
+}
