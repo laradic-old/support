@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Radic\\Support": "src/"
+            "Radic\\Support\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Radic\\SupportTests\\": "tests/"
+            "Radic\\Tests\\Support\\": "tests/"
         }
     },
     "minimum-stability": "stable"
