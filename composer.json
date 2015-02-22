@@ -1,7 +1,7 @@
 {
-    "name": "radic/support",
+    "name": "radic/laravel-support",
     "description": "Laravel support package",
-    "homepage": "https://github.com/RobinRadic/support",
+    "homepage": "https://github.com/RobinRadic/laravel-support",
     "keywords": [
         "loop",
         "extensions",
