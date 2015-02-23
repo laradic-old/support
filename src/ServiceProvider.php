@@ -12,6 +12,7 @@
  */
 use App;
 use Exception;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
@@ -91,5 +92,10 @@ abstract class ServiceProvider extends BaseServiceProvider
         {
             throw new Exception('Radic\Support\ServiceProvider->registerProvider could not find class to register: ' . $className);
         }
+    }
+
+    protected function alias($name, $fullyQualifiedName)
+    {
+        AliasLoader::getInstance()->alias($name, $fullyQualifiedName);
     }
 }
