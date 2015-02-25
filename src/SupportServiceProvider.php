@@ -13,6 +13,7 @@
 use App;
 use Exception;
 use Illuminate\Foundation\AliasLoader;
+use Radic\Support\Logger\Factory;
 
 /**
  * ServiceProvider
@@ -39,6 +40,7 @@ class SupportServiceProvider extends ServiceProvider
     {
         parent::register();
         AliasLoader::getInstance()->alias('Path', 'Radic\Support\Path');
+        $this->app->register('Radic\Support\Providers\LoggerServiceProvider');
     }
 
 }
