@@ -9,9 +9,14 @@ use Radic\Support\Contracts\Logger;
  *
  * @package Radic\Support${NAME}
  */
-class Factory implements Logger{
+class Factory implements Logger
+{
+
+    protected $enabled = false;
 
     protected $to = [];
+
+    protected $defaultTo = [];
 
     protected $loggers = ['chrome', 'native', 'firelog', 'debugbar', 'tracy'];
 
@@ -36,11 +41,41 @@ class Factory implements Logger{
      */
     public function __construct(Application $app)
     {
-        $this->chrome = new ChromeLogger($app);
-        $this->native = new NativeLogger($app);
-        $this->firelog = new FirelogLogger($app);
+        $this->chrome   = new ChromeLogger($app);
+        $this->native   = new NativeLogger($app);
+        $this->firelog  = new FirelogLogger($app);
         $this->debugbar = new DebugbarLogger($app);
-        $this->tracy = new TracyLogger($app);
+        $this->tracy    = new TracyLogger($app);
+    }
+
+    public function enable()
+    {
+        $this->enabled = true;
+        return $this;
+    }
+
+    public function disable()
+    {
+        $this->enabled = false;
+        return $this;
+    }
+
+    public function isEnabled()
+    {
+        return $this->enabled === true ? true : false;
+    }
+
+    public function setDefaultLoggers($loggers)
+    {
+        $this->defaultTo = [];
+        foreach($loggers as $logger => $enabled)
+        {
+            if(!$enabled)
+            {
+                continue;
+            }
+            $this->defaultTo[] = $logger;
+        }
     }
 
     /** @return Logger */
@@ -73,18 +108,20 @@ class Factory implements Logger{
         return $this->tracy;
     }
 
+
+
     public function to()
     {
         $loggers = func_get_args();
-        if(is_array($loggers[0]) && !isset($loggers[1]))
+        if (is_array($loggers[0]) && !isset($loggers[1]))
         {
             $loggers = $loggers[0];
         }
 
         $this->to = [];
-        foreach($loggers as $logger)
+        foreach ($loggers as $logger)
         {
-            if(in_array($logger, $this->loggers))
+            if (in_array($logger, $this->loggers))
             {
                 $this->to[] = $logger;
             }
@@ -100,51 +137,60 @@ class Factory implements Logger{
     /** @return Factory */
     public function log()
     {
-        foreach($this->to as $logger)
+        $to = !empty($this->to) ? $this->to : $this->defaultTo;
+        foreach ($to as $logger)
         {
             call_user_func_array([$this->{$logger}, 'log'], func_get_args());
         }
+
         return $this;
     }
 
     /** @return Factory */
     public function debug()
     {
-        foreach($this->to as $logger)
+        $to = !empty($this->to) ? $this->to : $this->defaultTo;
+        foreach ($to as $logger)
         {
             call_user_func_array([$this->{$logger}, 'debug'], func_get_args());
         }
+
         return $this;
     }
 
     /** @return Factory */
     public function warn()
     {
-        foreach($this->to as $logger)
+        $to = !empty($this->to) ? $this->to : $this->defaultTo;
+        foreach ($to as $logger)
         {
             call_user_func_array([$this->{$logger}, 'warn'], func_get_args());
         }
+
         return $this;
     }
 
     /** @return Factory */
     public function info()
     {
-        foreach($this->to as $logger)
+        $to = !empty($this->to) ? $this->to : $this->defaultTo;
+        foreach ($to as $logger)
         {
             call_user_func_array([$this->{$logger}, 'info'], func_get_args());
         }
+
         return $this;
     }
 
     /** @return Factory */
     public function error()
     {
-        foreach($this->to as $logger)
+        $to = !empty($this->to) ? $this->to : $this->defaultTo;
+        foreach ($to as $logger)
         {
             call_user_func_array([$this->{$logger}, 'error'], func_get_args());
         }
+
         return $this;
     }
-
 }
