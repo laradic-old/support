@@ -10,9 +10,9 @@
  * @link           http://radic.mit-license.org
  */
 
-namespace Radic\Tests\Support;
+namespace Laradic\Tests\Support;
 
-use Radic\Dev\Traits\ServiceProviderTestCaseTrait;
+use Laradic\Dev\Traits\ServiceProviderTestCaseTrait;
 
 
 /**
@@ -29,7 +29,7 @@ class ServiceProviderTest extends TestCase
      */
     public function testServiceProvider()
     {
-        $this->runServiceProviderRegisterTest('Radic\Dev\DevServiceProvider');
+        $this->runServiceProviderRegisterTest('Laradic\Dev\DevServiceProvider');
         $this->runServiceProviderRegisterTest($this->getServiceProviderClass($this->app));
     }
 }

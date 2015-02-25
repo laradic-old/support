@@ -1,10 +1,10 @@
-<?php namespace Radic\Support\Contracts;
+<?php namespace Laradic\Support\Contracts;
 
 /**
  * Part of the Radic packges.
  * Licensed under the MIT license.
  *
- * @package         Radic\Support\Contracts
+ * @package         Laradic\Support\Contracts
  * @author          Robin Radic
  * @license         MIT
  * @copyright   (c) 2011-2015, Robin Radic

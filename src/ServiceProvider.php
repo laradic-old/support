@@ -1,4 +1,4 @@
-<?php namespace Radic\Support;
+<?php namespace Laradic\Support;
 
 /**
  * Part of the Radic packges.
@@ -18,7 +18,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 /**
  * ServiceProvider
  *
- * @package Radic\Support${NAME}
+ * @package Laradic\Support${NAME}
  */
 abstract class ServiceProvider extends BaseServiceProvider
 {
@@ -91,7 +91,7 @@ abstract class ServiceProvider extends BaseServiceProvider
         }
         elseif ($throwException === true)
         {
-            throw new Exception('Radic\Support\ServiceProvider->registerProvider could not find class to register: ' . $className);
+            throw new Exception('Laradic\Support\ServiceProvider->registerProvider could not find class to register: ' . $className);
         }
     }
 

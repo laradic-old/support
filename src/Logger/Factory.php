@@ -1,13 +1,13 @@
-<?php namespace Radic\Support\Logger;
+<?php namespace Laradic\Support\Logger;
 
 use Illuminate\Contracts\Foundation\Application;
-use Radic\Support\Contracts\Logger;
+use Laradic\Support\Contracts\Logger;
 
 
 /**
  * Path
  *
- * @package Radic\Support${NAME}
+ * @package Laradic\Support${NAME}
  */
 class Factory implements Logger
 {
@@ -20,19 +20,19 @@ class Factory implements Logger
 
     protected $loggers = ['chrome', 'native', 'firelog', 'debugbar', 'tracy'];
 
-    /** @var \Radic\Support\Contracts\Logger */
+    /** @var \Laradic\Support\Contracts\Logger */
     protected $chrome;
 
-    /** @var \Radic\Support\Contracts\Logger */
+    /** @var \Laradic\Support\Contracts\Logger */
     protected $native;
 
-    /** @var \Radic\Support\Contracts\Logger */
+    /** @var \Laradic\Support\Contracts\Logger */
     protected $firelog;
 
-    /** @var \Radic\Support\Contracts\Logger */
+    /** @var \Laradic\Support\Contracts\Logger */
     protected $debugbar;
 
-    /** @var \Radic\Support\Contracts\Logger */
+    /** @var \Laradic\Support\Contracts\Logger */
     protected $tracy;
 
     /**

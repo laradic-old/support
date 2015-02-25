@@ -1,4 +1,4 @@
-<?php namespace Radic\Support\Providers;
+<?php namespace Laradic\Support\Providers;
 
 /**
  * Part of the Radic packges.
@@ -14,12 +14,12 @@ use App;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Radic\Support\Logger\Factory;
+use Laradic\Support\Logger\Factory;
 
 /**
  * ServiceProvider
  *
- * @package Radic\Support${NAME}
+ * @package Laradic\Support${NAME}
  */
 class LoggerServiceProvider extends ServiceProvider
 {
@@ -27,8 +27,8 @@ class LoggerServiceProvider extends ServiceProvider
     public function register()
     {
         $app = $this->app;
-        $app->bind('radic.logger', 'Radic\Support\Logger\Factory');
-        AliasLoader::getInstance()->alias('Logger', 'Radic\Support\Facades\Logger');
+        $app->bind('radic.logger', 'Laradic\Support\Logger\Factory');
+        AliasLoader::getInstance()->alias('Logger', 'Laradic\Support\Facades\Logger');
     }
 
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Radic\Support\Logger;
+namespace Laradic\Support\Logger;
  /**
  * Part of the Radic packges.
  * Licensed under the MIT license.
  *
- * @package     Radic\Support\Logger
+ * @package     Laradic\Support\Logger
  * @author      Robin Radic
  * @license     MIT
  * @copyright   (c) 2011-2015, Robin Radic
@@ -13,11 +13,11 @@ namespace Radic\Support\Logger;
  */
 use File;
 use Illuminate\Foundation\Application;
-use Radic\Support\Contracts\Logger;
+use Laradic\Support\Contracts\Logger;
 /**
  * ChromeLogger
  *
- * @package Radic\Support\Logger\ChromeLogger
+ * @package Laradic\Support\Logger\ChromeLogger
  */
 class TracyLogger extends AbstractLogger
 {

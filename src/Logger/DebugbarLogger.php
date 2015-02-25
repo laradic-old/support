@@ -1,22 +1,22 @@
 <?php
 
-namespace Radic\Support\Logger;
+namespace Laradic\Support\Logger;
  /**
  * Part of the Radic packges.
  * Licensed under the MIT license.
  *
- * @package     Radic\Support\Logger
+ * @package     Laradic\Support\Logger
  * @author      Robin Radic
  * @license     MIT
  * @copyright   (c) 2011-2015, Robin Radic
  * @link        http://radic.mit-license.org
  */
 use Debugbar;
-use Radic\Support\Contracts\Logger;
+use Laradic\Support\Contracts\Logger;
 /**
  * ChromeLogger
  *
- * @package Radic\Support\Logger\ChromeLogger
+ * @package Laradic\Support\Logger\ChromeLogger
  */
 class DebugbarLogger extends AbstractLogger
 {

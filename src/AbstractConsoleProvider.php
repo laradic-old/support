@@ -1,4 +1,4 @@
-<?php namespace Radic\Support;
+<?php namespace Laradic\Support;
 
 /**
  * Part of the Radic packges.
@@ -16,7 +16,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 /**
  * ServiceProvider
  *
- * @package Radic\Support${NAME}
+ * @package Laradic\Support${NAME}
  */
 abstract class AbstractConsoleProvider extends BaseServiceProvider
 {

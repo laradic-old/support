@@ -1,4 +1,4 @@
-<?php namespace Radic\Support\Traits;
+<?php namespace Laradic\Support\Traits;
 
 /**
  * Part of the Radic packges.
@@ -20,7 +20,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * BindLaravelCoreTrait
  *
- * @package Radic\Support\Traits${NAME}
+ * @package Laradic\Support\Traits${NAME}
  */
 trait BindIlluminateTrait
 {

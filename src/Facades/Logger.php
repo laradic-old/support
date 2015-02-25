@@ -1,4 +1,4 @@
-<?php namespace Radic\Support\Facades;
+<?php namespace Laradic\Support\Facades;
 
 /**
  * Part of the Radic packges.
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Markdown
  *
- * @package Radic\BladeExtensions\Facades${NAME}
+ * @package Laradic\BladeExtensions\Facades${NAME}
  */
 class Logger extends Facade
 {

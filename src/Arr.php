@@ -2,14 +2,14 @@
 /**
  * Arrays
  */
-namespace Radic\Support;
+namespace Laradic\Support;
 
 use Underscore\Types\Arrays;
 /**
  * Arrays
  *
  * {@inheritdoc}
- * @package    Radic\Support
+ * @package    Laradic\Support
  * @author     Robin Radic
  * @license    MIT
  * @copyright  (c) 2011-2015, Robin Radic

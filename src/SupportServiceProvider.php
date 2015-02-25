@@ -1,4 +1,4 @@
-<?php namespace Radic\Support;
+<?php namespace Laradic\Support;
 
 /**
  * Part of the Radic packges.
@@ -13,12 +13,12 @@
 use App;
 use Exception;
 use Illuminate\Foundation\AliasLoader;
-use Radic\Support\Logger\Factory;
+use Laradic\Support\Logger\Factory;
 
 /**
  * ServiceProvider
  *
- * @package Radic\Support${NAME}
+ * @package Laradic\Support${NAME}
  */
 class SupportServiceProvider extends ServiceProvider
 {
@@ -39,8 +39,8 @@ class SupportServiceProvider extends ServiceProvider
     public function register()
     {
         parent::register();
-        AliasLoader::getInstance()->alias('Path', 'Radic\Support\Path');
-        $this->app->register('Radic\Support\Providers\LoggerServiceProvider');
+        AliasLoader::getInstance()->alias('Path', 'Laradic\Support\Path');
+        $this->app->register('Laradic\Support\Providers\LoggerServiceProvider');
     }
 
 }

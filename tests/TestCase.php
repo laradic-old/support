@@ -1,13 +1,13 @@
 <?php
 
-namespace Radic\Tests\Support;
+namespace Laradic\Tests\Support;
 
-use Radic\Dev\AbstractTestCase;
+use Laradic\Dev\AbstractTestCase;
 /**
  * Part of the Radic packges.
  * Licensed under the MIT license.
  *
- * @package     Radic\Tests\Support
+ * @package     Laradic\Tests\Support
  * @author      Robin Radic
  * @license     MIT
  * @copyright   (c) 2011-2015, Robin Radic
@@ -29,6 +29,6 @@ class TestCase extends AbstractTestCase
      */
     protected function getServiceProviderClass($app)
     {
-        return 'Radic\Support\SupportServiceProvider';
+        return 'Laradic\Support\SupportServiceProvider';
     }
 }

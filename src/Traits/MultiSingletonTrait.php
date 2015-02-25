@@ -1,4 +1,4 @@
-<?php namespace Radic\Support\Traits;
+<?php namespace Laradic\Support\Traits;
 
 trait MultiSingletonTrait {
     protected function __construct()

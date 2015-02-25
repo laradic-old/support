@@ -1,4 +1,4 @@
-<?php namespace Radic\Support;
+<?php namespace Laradic\Support;
 
 /**
  * Part of the Radic packges.
@@ -15,7 +15,7 @@ use Webmozart\PathUtil\Path as BasePath;
 /**
  * Path
  *
- * @package Radic\Support${NAME}
+ * @package Laradic\Support${NAME}
  */
 class Path extends BasePath
 {
