@@ -16,9 +16,16 @@
             "role": "Package Author/Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:prodeveloper/underscore-php.git"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "5.0.*"
+        "illuminate/support": "5.0.*",
+        "anahkiasen/underscore-php": "dev-master#d59abd7aebdff061c1cdf942622efaccf3113197"
     },
     "require-dev": {
         "php": ">=5.4.0",

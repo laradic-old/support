@@ -39,6 +39,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
+
         if (!isset($this->dir))
         {
             throw new Exception('Service provider $dir property not set. Is required..');
