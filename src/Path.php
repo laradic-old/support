@@ -20,4 +20,24 @@ use Webmozart\PathUtil\Path as BasePath;
 class Path extends BasePath
 {
 
+    /**
+     * Joins a split file system path.
+     *
+     * @param mixed $path Array or parameters of strings , The split path.
+     *
+     * @return string The joined path.
+     */
+    public static function join()
+    {
+        $args = func_get_args();
+        if(func_num_args() === 1 and is_array($args[0]))
+        {
+            return join(DIRECTORY_SEPARATOR, $args[0]);
+        }
+        else
+        {
+            return join(DIRECTORY_SEPARATOR, $args);
+        }
+
+    }
 }

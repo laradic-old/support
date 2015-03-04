@@ -19,9 +19,19 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
  * ServiceProvider
  *
  * @package Laradic\Support${NAME}
+ * @uses        \IdeHelper\ServiceProvider
+ * @uses        \IdeHelper\App
  */
 abstract class ServiceProvider extends BaseServiceProvider
 {
+
+    /**
+     * The application instance.
+     *
+     * @var \IdeHelper\App
+     */
+    protected $app;
+
 
     /**
      * Array of configuration files
@@ -40,15 +50,13 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
-
-        if ( ! isset($this->dir) )
+        if ( isset($this->dir) and isset($this->configFiles) and is_array($this->configFiles) )
         {
-            throw new Exception('Service provider $dir property not set. Is required..');
-        }
-        foreach ($this->configFiles as $fileName)
-        {
-            $configPath = $this->dir . '/../config/' . $fileName . '.php';
-            $this->publishes([$configPath => config_path($fileName . '.php')], 'config');
+            foreach ($this->configFiles as $fileName)
+            {
+                $configPath = $this->dir . '/../config/' . $fileName . '.php';
+                $this->publishes([$configPath => config_path($fileName . '.php')], 'config');
+            }
         }
     }
 
@@ -59,43 +67,19 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        if ( ! isset($this->dir) )
+        if ( isset($this->dir) and isset($this->configFiles) and is_array($this->configFiles) )
         {
-            throw new Exception('Service provider $dir property not set. Is required..');
-        }
-        foreach ($this->configFiles as $fileName)
-        {
-            $configPath = $this->dir . '/../config/' . $fileName . '.php';
-            $this->mergeConfigFrom($configPath, $fileName);
+            foreach ($this->configFiles as $fileName)
+            {
+                $configPath = $this->dir . '/../config/' . $fileName . '.php';
+                $this->mergeConfigFrom($configPath, $fileName);
+            }
         }
     }
 
-    /**
-     * Registers a service provider
-     * @param string $className    The fully qualified class name
-     * @param bool $override       Default is false, If true, it will override any
-     * @param bool $throwException Default is true, If false, it will now throw an exception if the class could not be found
-     * @throws Exception if the className could not be found, it will throw an exception
-     */
-    protected function registerProvider($className, $override = false, $throwException = true)
-    {
-        if ( class_exists($className) === true )
-        {
-            if ( $override === true )
-            {
-                $this->app->register(new $className($this->app));
-            }
-            elseif ( array_key_exists($className, App::getLoadedProviders()) === false )
-            {
-                $this->app->register(new $className($this->app));
-            }
-        }
-        elseif ( $throwException === true )
-        {
-            throw new Exception('Laradic\Support\ServiceProvider->registerProvider could not find class to register: ' . $className);
-        }
+    public function registerProvider($str){
+        $this->app->register($str);
     }
-
     protected function alias($name, $fullyQualifiedName)
     {
         AliasLoader::getInstance()->alias($name, $fullyQualifiedName);
