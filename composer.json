@@ -38,5 +38,5 @@
             "Laradic\\Tests\\Support\\": "tests/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
