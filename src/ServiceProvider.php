@@ -36,11 +36,12 @@ abstract class ServiceProvider extends BaseServiceProvider
      * Boots the service provider.
      *
      * @return void
+     * @throws Exception if property $dir is not set
      */
     public function boot()
     {
 
-        if (!isset($this->dir))
+        if ( ! isset($this->dir) )
         {
             throw new Exception('Service provider $dir property not set. Is required..');
         }
@@ -58,7 +59,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        if (!isset($this->dir))
+        if ( ! isset($this->dir) )
         {
             throw new Exception('Service provider $dir property not set. Is required..');
         }
@@ -78,18 +79,18 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     protected function registerProvider($className, $override = false, $throwException = true)
     {
-        if (class_exists($className) === true)
+        if ( class_exists($className) === true )
         {
-            if ($override === true)
+            if ( $override === true )
             {
                 $this->app->register(new $className($this->app));
             }
-            elseif (array_key_exists($className, App::getLoadedProviders()) === false)
+            elseif ( array_key_exists($className, App::getLoadedProviders()) === false )
             {
                 $this->app->register(new $className($this->app));
             }
         }
-        elseif ($throwException === true)
+        elseif ( $throwException === true )
         {
             throw new Exception('Laradic\Support\ServiceProvider->registerProvider could not find class to register: ' . $className);
         }

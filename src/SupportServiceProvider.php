@@ -13,7 +13,6 @@
 use App;
 use Exception;
 use Illuminate\Foundation\AliasLoader;
-use Laradic\Support\Logger\Factory;
 
 /**
  * ServiceProvider
@@ -39,8 +38,6 @@ class SupportServiceProvider extends ServiceProvider
     public function register()
     {
         parent::register();
-        AliasLoader::getInstance()->alias('Path', 'Laradic\Support\Path');
-        $this->app->register('Laradic\Support\Providers\LoggerServiceProvider');
     }
 
 }
