@@ -20,7 +20,8 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "5.0.*",
-        "radic/tmp-underscore-php": "dev-master"
+        "radic/tmp-underscore-php": "dev-master",
+        "webmozart/path-util": "~1.0",
     },
     "require-dev": {
         "php": ">=5.4.0",
