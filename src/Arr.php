@@ -19,4 +19,20 @@ use Underscore\Types\Arrays;
 class Arr extends Arrays
 {
 
+    public static function unflatten(array $array, $delimiter = '.') {
+        $unflattenedArray = array();
+        foreach ($array as $key => $value) {
+            $keyList = explode($delimiter, $key);
+            $firstKey = array_shift($keyList);
+            if (sizeof($keyList) > 0) { //does it go deeper, or was that the last key?
+                $subarray = static::unflatten(array(implode($delimiter, $keyList) => $value), $delimiter);
+                foreach ($subarray as $subarrayKey => $subarrayValue) {
+                    $unflattenedArray[$firstKey][$subarrayKey] = $subarrayValue;
+                }
+            } else {
+                $unflattenedArray[$firstKey] = $value;
+            }
+        }
+        return $unflattenedArray;
+    }
 }
