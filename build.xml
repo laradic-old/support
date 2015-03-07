@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="laravel-support" default="build">
+<project name="support" default="build">
     <property name="toolsdir" value="${project.basedir}/build/tools/"/>
     <property name="srcdir" value="${project.basedir}/src" />
     <property name="testsdir" value="${project.basedir}/tests" />
     <property name="changelog.header" value="# Changelog"/>
     <property name="changelog.filename" value="CHANGELOG.md"/>
     <property name="gitremote.url" value="https://github.com"/>
-    <property name="gitremote.owner" value="robinradic"/>
+    <property name="gitremote.owner" value="laradic"/>
     <property name="gitremote.repo" value="${phing.project.name}"/>
 
     <if>

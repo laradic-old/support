@@ -1,12 +1,14 @@
 Laravel Support
 ===================================
 
-[![Build Status](https://travis-ci.org/RobinRadic/support.svg?branch=master)](https://travis-ci.org/RobinRadic/support)
-[![GitHub version](https://badge.fury.io/gh/robinradic%2Fsupport.svg)](http://badge.fury.io/gh/robinradic%2Fsupport)
-[![Total Downloads](https://poser.pugx.org/radic/support/downloads.svg)](https://packagist.org/packages/radic/support)
-[![Goto documentation](http://img.shields.io/badge/goto-documentation-orange.svg)](http://docs.radic.nl/support)
-[![Goto repository](http://img.shields.io/badge/goto-repository-orange.svg)](https://github.com/robinradic/support)
-[![License](http://img.shields.io/badge/license-MIT-blue.svg)](http://radic.mit-license.org)
+[![Build Status](https://img.shields.io/travis/laradic/support.svg?branch=master&style=flat-square)](https://travis-ci.org/laradic/support)
+[![GitHub Version](https://img.shields.io/github/tag/laradic/support.svg?style=flat-square&label=version)](http://badge.fury.io/gh/laradic%2Fconfig)
+[![Total Downloads](https://img.shields.io/packagist/dt/laradic/support.svg?style=flat-square)](https://packagist.org/packages/laradic/support)
+[![License](http://img.shields.io/badge/license-MIT-ff69b4.svg?style=flat-square)](http://radic.mit-license.org)
+  
+[![Goto Documentation](http://img.shields.io/badge/@-documentation-orange.svg?style=flat-square)](http://docs.radic.nl/config)
+[![Goto API Documentation](http://img.shields.io/badge/@-api-orange.svg?style=flat-square)](http://docs.radic.nl/config)
+[![Goto Repository](http://img.shields.io/badge/@-repository-orange.svg?style=flat-square)](https://github.com/laradic/support)
 
 Version 1.0
 -----------
@@ -24,4 +26,4 @@ Version 1.0
 @todo
 
 ### Copyright/License
-Copyright 2015 [Robin Radic](https://github.com/RobinRadic) - [MIT Licensed](http://radic.mit-license.org) 
+Copyright 2015 [Robin Radic](https://github.com/laradic) - [MIT Licensed](http://radic.mit-license.org) 
