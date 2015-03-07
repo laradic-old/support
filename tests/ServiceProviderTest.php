@@ -22,14 +22,9 @@ use Laradic\Dev\Traits\ServiceProviderTestCaseTrait;
  */
 class ServiceProviderTest extends TestCase
 {
-    use ServiceProviderTestCaseTrait;
 
-    /*
-     *
-     */
-    public function testServiceProvider()
+    public function testMe()
     {
-        $this->runServiceProviderRegisterTest('Laradic\Dev\DevServiceProvider');
-        $this->runServiceProviderRegisterTest($this->getServiceProviderClass($this->app));
+        $this->testMeOk();
     }
 }

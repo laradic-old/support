@@ -14,11 +14,6 @@ Version 1.0
 **Laravel 5** package providing extra illuminate/support like classes 
 
 #### Installation  
-###### Requirements
-```JSON
-"PHP": ">=5.4.0"
-```
-  
 ###### Composer
 ```JSON
 "radic/support": "~1.0"

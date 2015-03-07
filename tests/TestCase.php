@@ -20,15 +20,4 @@ class TestCase extends AbstractTestCase
     {
         parent::setUp();
     }
-    /**
-     * Get the service provider class.
-     *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
-     * @return string
-     */
-    protected function getServiceProviderClass($app)
-    {
-        return 'Laradic\Support\SupportServiceProvider';
-    }
 }
