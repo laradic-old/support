@@ -28,7 +28,7 @@ abstract class ServiceProvider extends BaseServiceProvider
     /**
      * The application instance.
      *
-     * @var \IdeHelper\App
+     * @var \Illuminate\Contracts\Foundation\Application
      */
     protected $app;
 
