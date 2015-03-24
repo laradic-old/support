@@ -77,11 +77,13 @@ abstract class ServiceProvider extends BaseServiceProvider
     /**
      * Boots the service provider.
      *
-     * @return void
+     * @return \Illuminate\Foundation\Application
      * @throws Exception if property $dir is not set
      */
     public function boot()
     {
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = $this->app;
 
         if ( isset($this->dir) and isset($this->configFiles) and is_array($this->configFiles) )
         {
@@ -91,12 +93,14 @@ abstract class ServiceProvider extends BaseServiceProvider
                 $this->publishes([$configPath => config_path($fileName . '.php')], 'config');
             }
         }
+
+        return $app;
     }
 
     /**
      * Register the service provider.
      *
-     * @return void
+     * @return \Illuminate\Foundation\Application
      */
     public function register()
     {
@@ -142,6 +146,8 @@ abstract class ServiceProvider extends BaseServiceProvider
         {
             $this->alias($alias, $full);
         }
+
+        return $app;
     }
 
     /**
