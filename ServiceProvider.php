@@ -104,6 +104,7 @@ abstract class ServiceProvider extends BaseServiceProvider
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
 
+
         $router = $app->make('router');
         $kernel = $app->make('Illuminate\Contracts\Http\Kernel');
 
