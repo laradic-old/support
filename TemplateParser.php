@@ -1,19 +1,22 @@
 <?php
 /**
  * Part of the Laradic packages.
+ * MIT License and copyright information bundled with this package in the LICENSE file.
+ *
+ * @author      Robin Radic
+ * @license     MIT
+ * @copyright   2011-2015, Robin Radic
+ * @link        http://radic.mit-license.org
  */
 namespace Laradic\Support;
 
-use Illuminate\Filesystem\Filesystem;
+use Laradic\Support\Filesystem;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class TemplateParser
  *
  * @package     Laradic\Support
- * @author      Robin Radic
- * @license     MIT
- * @copyright   2011-2015, Robin Radic
- * @link        http://radic.mit-license.org
  */
 class TemplateParser
 {
@@ -51,9 +54,9 @@ class TemplateParser
      */
     public function __construct(Filesystem $files, $sourceDir)
     {
-        $this->files  = $files;
+        $this->files     = $files;
         $this->sourceDir = $sourceDir;
-        $this->values = [
+        $this->values    = [
             'date.year'  => date("Y"),
             'date.month' => date("m"),
             'date.day'   => date("d"),
@@ -89,7 +92,39 @@ class TemplateParser
             $to = is_null($to) ? $file : $to;
             $to = Path::isAbsolute($to) ? $to : Path::join(getcwd(), $to);
 
-            $this->files->put($to, $this->parse($content, $values));
+            $this->files->put(Path::join($to, $srcFile), $this->parse($content, $values));
+            #VarDumper::dump(['copyto' => Path::join($to, $srcFile)]);
+        }
+    }
+
+    public function copyDirectory($to, $from = null, array $values = [])
+    {
+        $from = is_null($from) ? $this->sourceDir : $from;
+        $files = $this->files->rglob(Path::join($from, '*'));
+        $dirs = $this->files->rglob(Path::join($from, '*'), GLOB_ONLYDIR);
+        $this->files->makeDirectory(realpath($to), 0755, true);
+       # VarDumper::dump(compact('to', 'from', 'dirs', 'files'));
+        foreach($dirs as $dir)
+        {
+            $toPath = Path::join($to, Str::remove(realpath($dir), realpath($from) . '/'));
+            $this->files->makeDirectory($toPath, 0755, true);
+            #VarDumper::dump("Created dir $toPath [$dir]" . Str::remove(realpath($dir), realpath($from) . '/'));
+        }
+
+        foreach($files as $file)
+        {
+            $filePath = realpath($file);
+            $fromPath = Str::remove($file, $from . '/');
+            #$toPath = Path::join($to, Str::remove($filePath, realpath($from) . '/'));
+            if($this->files->isDirectory($file))
+            {
+                continue;
+            }
+            else
+            {
+                $this->copy($fromPath, $to, $values);
+                #VarDumper::dump("Copied $fromPath to $to");
+            }
         }
     }
 
@@ -227,6 +262,4 @@ class TemplateParser
 
         return $this;
     }
-
-
 }

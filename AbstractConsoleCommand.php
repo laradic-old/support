@@ -25,6 +25,7 @@ class AbstractConsoleCommand extends Command
      */
     protected $colors;
 
+
     /**
      * Instanciates the class
      */

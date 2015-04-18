@@ -168,13 +168,13 @@ class String
             {
                 return call_user_func_array([$object, $name], array_slice($arguments, 1));
             }
-            VarDumper::dump([$object, $name, $arguments]);
+            #VarDumper::dump([$object, $name, $arguments]);
         }
     }
 
     public static function __callStatic($name, $arguments)
     {
-        VarDumper::dump(['callStatic', $name, $arguments]);
+        #VarDumper::dump(['callStatic', $name, $arguments]);
         return call_user_func_array([static::create(), $name], $arguments);
     }
 }
