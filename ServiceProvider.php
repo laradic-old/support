@@ -46,7 +46,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      * Path to resources folder, relative to $dir
      * @var string
      */
-    protected $resourcesPath = '/resources';
+    protected $resourcesPath = 'resources';
 
     /**
      * @var array
@@ -72,6 +72,9 @@ abstract class ServiceProvider extends BaseServiceProvider
      * @var array
      */
     protected $routeMiddlewares = [];
+
+    protected $migrationDirs = [];
+
 
 
     /**
@@ -117,9 +120,17 @@ abstract class ServiceProvider extends BaseServiceProvider
         {
             foreach ($this->configFiles as $fileName)
             {
-                $configPath = $this->dir . $this->resourcesPath . '/config/' . $fileName . '.php';
+                $configPath = Path::join($this->dir, $this->resourcesPath, 'config', $fileName . '.php');
+                #$configPath = $this->dir . $this->resourcesPath . '/config/' . $fileName . '.php';
                 $this->mergeConfigFrom($configPath, $fileName);
             }
+
+            foreach ($this->migrationDirs as $migrationDir)
+            {
+                $migrationPath = Path::join($this->dir, $this->resourcesPath, $migrationDir);
+                $this->publishes([$migrationPath => base_path('/database/migrations')], 'migrations');
+            }
+
         }
 
         foreach ($this->prependMiddlewares as $middleware)

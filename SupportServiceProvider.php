@@ -1,15 +1,14 @@
 <?php
- /**
+/**
  * Part of the Laradic packages.
  * MIT License and copyright information bundled with this package in the LICENSE file.
+ *
  * @author      Robin Radic
  * @license     MIT
  * @copyright   2011-2015, Robin Radic
  * @link        http://radic.mit-license.org
  */
 namespace Laradic\Support;
-use Illuminate\Contracts\Foundation\Application;
-use Laradic\Support\ServiceProvider;
 
 /**
  * Class SupportServiceProvider
@@ -28,10 +27,11 @@ class SupportServiceProvider extends ServiceProvider
     public function register()
     {
         /** @var \Illuminate\Foundation\Application $app */
-        $app = parent::register();
-        $app['files'] = $app->share(function() #Application $app)
+        $app          = parent::register();
+        $app['files'] = $app->share(function () #Application $app)
         {
             return new Filesystem();
         });
+        require_once __DIR__ . '/helpers.php';
     }
 }

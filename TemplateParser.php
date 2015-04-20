@@ -10,9 +10,6 @@
  */
 namespace Laradic\Support;
 
-use Laradic\Support\Filesystem;
-use Symfony\Component\VarDumper\VarDumper;
-
 /**
  * Class TemplateParser
  *
@@ -45,6 +42,11 @@ class TemplateParser
      * @var string
      */
     protected $sourceDir;
+
+    /**
+     * @var string
+     */
+    protected $destinationDir;
 
     /**
      * Instanciates the class
@@ -97,26 +99,53 @@ class TemplateParser
         }
     }
 
+    /**
+     * create
+     *
+     * @param       $stubRelativeFilePath
+     * @param       $destinationFilePath
+     * @param array $values
+     * @param null  $sourceDir
+     * @return $this
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function create($stubRelativeFilePath, $destinationFilePath, array $values = array(), $sourceDir = null)
+    {
+        $sourceDir           = is_null($sourceDir) ? $this->sourceDir : $sourceDir;
+        $stubFilePath        = Path::join($sourceDir, $stubRelativeFilePath);
+        $destinationFilePath = (Path::isRelative($destinationFilePath) and isset($this->destinationDir) ? Path::join($this->destinationDir, $destinationFilePath) : $destinationFilePath);
+        $destinationDirPath  = Path::getDirectory($destinationFilePath);
+        $content             = $this->files->get($stubFilePath);
+
+        if ( ! $this->files->isDirectory($destinationDirPath) )
+        {
+            $this->files->makeDirectory($destinationDirPath, 0755, true);
+        }
+
+        $this->files->put($destinationFilePath, $this->parse($content, $values));
+        return $this;
+    }
+
     public function copyDirectory($to, $from = null, array $values = [])
     {
-        $from = is_null($from) ? $this->sourceDir : $from;
+        $from  = is_null($from) ? $this->sourceDir : $from;
         $files = $this->files->rglob(Path::join($from, '*'));
-        $dirs = $this->files->rglob(Path::join($from, '*'), GLOB_ONLYDIR);
+        $dirs  = $this->files->rglob(Path::join($from, '*'), GLOB_ONLYDIR);
         $this->files->makeDirectory(realpath($to), 0755, true);
-       # VarDumper::dump(compact('to', 'from', 'dirs', 'files'));
-        foreach($dirs as $dir)
+        # VarDumper::dump(compact('to', 'from', 'dirs', 'files'));
+        foreach ($dirs as $dir)
         {
             $toPath = Path::join($to, Str::remove(realpath($dir), realpath($from) . '/'));
             $this->files->makeDirectory($toPath, 0755, true);
             #VarDumper::dump("Created dir $toPath [$dir]" . Str::remove(realpath($dir), realpath($from) . '/'));
         }
 
-        foreach($files as $file)
+        foreach ($files as $file)
         {
             $filePath = realpath($file);
             $fromPath = Str::remove($file, $from . '/');
             #$toPath = Path::join($to, Str::remove($filePath, realpath($from) . '/'));
-            if($this->files->isDirectory($file))
+            if ( $this->files->isDirectory($file) )
             {
                 continue;
             }
@@ -189,6 +218,7 @@ class TemplateParser
      * Sets the value of openDelimiter
      *
      * @param string $openDelimiter
+     * @return $this
      */
     public function setOpenDelimiter($openDelimiter)
     {
@@ -211,6 +241,7 @@ class TemplateParser
      * Sets the value of closeDelimiter
      *
      * @param string $closeDelimiter
+     * @return $this
      */
     public function setCloseDelimiter($closeDelimiter)
     {
@@ -233,6 +264,7 @@ class TemplateParser
      * Sets the value of files
      *
      * @param \Illuminate\Filesystem\Filesystem $files
+     * @return $this
      */
     public function setFiles($files)
     {
@@ -255,10 +287,34 @@ class TemplateParser
      * Sets the value of sourceDir
      *
      * @param string $sourceDir
+     * @return $this
      */
     public function setSourceDir($sourceDir)
     {
         $this->sourceDir = $sourceDir;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of destinationDir
+     *
+     * @return string
+     */
+    public function getDestinationDir()
+    {
+        return $this->destinationDir;
+    }
+
+    /**
+     * Sets the value of destinationDir
+     *
+     * @param string $destinationDir
+     * @return string
+     */
+    public function setDestinationDir($destinationDir)
+    {
+        $this->destinationDir = $destinationDir;
 
         return $this;
     }
