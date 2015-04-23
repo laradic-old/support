@@ -6,6 +6,8 @@ namespace Laradic\Support;
 
 use Stringy\Stringy;
 use Symfony\Component\VarDumper\VarDumper;
+use Underscore\Dispatch;
+use Underscore\Method;
 use Underscore\Types\String as UnderscoreString;
 
 /**
@@ -31,7 +33,7 @@ use Underscore\Types\String as UnderscoreString;
  * @method static mixed append($string,$with)
  * @method static mixed remove($string,$remove)
  * @method static mixed replace($string,$replace,$with)
- * @method static mixed toggle($string,$first,$second,$loose)
+ * @method static mixed toggle($string,$first,$second, $loose = false)
  * @method static mixed slugify($string,$separator)
  * @method static mixed explode($string,$with,$limit)
  * @method static mixed lower($string)
@@ -46,7 +48,7 @@ use Underscore\Types\String as UnderscoreString;
  * @method static mixed endsWith($haystack,$needles)
  * @method static mixed finish($value,$cap)
  * @method static mixed is($pattern,$value)
- * @method static mixed limit($value,$limit,$end)
+ * @method static mixed limit($value,$limit)
  * @method static mixed words($value,$words,$end)
  * @method static mixed parseCallback($callback,$default)
  * @method static mixed plural($value,$count)
@@ -129,37 +131,28 @@ class String
 {
     protected $underscoreString;
 
-    public static function create()
-    {
-        return new static();
-    }
-
-    /**
-     * getUnderscoreString
-     *
-     * @return \Underscore\Types\String
-     */
-    public function getUnderscoreString()
-    {
-        if(!isset($this->underscoreString))
-        {
-            $this->underscoreString = UnderscoreString::create();
-        }
-        return $this->underscoreString;
-    }
-
     /** @return Stringy */
-    protected function getStringyString($arguments)
+    public function getStringyString($arguments)
     {
         $str = head($arguments);
         return Stringy::create($str);
     }
 
+    public static function from($string)
+    {
+        return \Underscore\Types\String::from($string);
+    }
+
+    public static function create($string)
+    {
+        return \Stringy\Stringy::create($string);
+    }
+
     public function __call($name, $arguments)
     {
-        if(method_exists($this->getUnderscoreString(), $name))
+        if(method_exists('Underscore\Methods\StringMethods', $name))
         {
-            return call_user_func_array([$this->getUnderscoreString(), $name], $arguments);
+            return forward_static_call_array(['Underscore\Types\String', $name], $arguments);
         }
         else
         {
@@ -168,13 +161,11 @@ class String
             {
                 return call_user_func_array([$object, $name], array_slice($arguments, 1));
             }
-            #VarDumper::dump([$object, $name, $arguments]);
         }
     }
 
     public static function __callStatic($name, $arguments)
     {
-        #VarDumper::dump(['callStatic', $name, $arguments]);
-        return call_user_func_array([static::create(), $name], $arguments);
+        return call_user_func_array([new static(), $name], $arguments);
     }
 }

@@ -73,19 +73,18 @@ abstract class AbstractConsoleProvider extends BaseServiceProvider
     /**
      * Register the command.
      *
-     * @return void
+     * @param $command
+     * @param $binding
+     * @throws ErrorException
      */
     protected function registerCommand($command, $binding)
     {
-        $class = '\\' . $this->namespace . '\\' . $command . 'Command';
+        $class = $this->namespace . '\\' . $command . 'Command';
         if (!class_exists($class))
         {
             throw new ErrorException("Your ConsoleServiceProvider(AbstractConsoleProvider)->registerCommand($command, $binding) could not find $class");
         }
-        $this->app->singleton($binding, function ($app) use ($class)
-        {
-            return new $class($app);
-        });
+        $this->app->singleton($binding, $class);
     }
 
     /**
