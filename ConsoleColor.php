@@ -1,18 +1,22 @@
 <?php
- /**
- * Part of the Radic packages.
+/**
+ * Part of the Robin Radic's PHP packages.
+ *
+ * MIT License and copyright information bundled with this package
+ * in the LICENSE file or visit http://radic.mit-license.com
  */
 namespace Laradic\Support;
-/**
- * Class ConsoleColor
- *
- * @package     Laradic\Support
- * @author      Robin Radic
- * @license     MIT
- * @copyright   2011-2015, Robin Radic
- * @link        http://radic.mit-license.org
- */
 
+/**
+ * This is the ConsoleColor class.
+ *
+ * @package        Laradic\Support
+ * @version        1.0.0
+ * @author         Robin Radic
+ * @license        MIT License
+ * @copyright      2015, Robin Radic
+ * @link           https://github.com/robinradic
+ */
 class ConsoleColor
 {
     const FOREGROUND = 38,

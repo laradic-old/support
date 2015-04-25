@@ -1,12 +1,9 @@
 <?php
 /**
- * Part of the Laradic packages.
- * MIT License and copyright information bundled with this package in the LICENSE file.
+ * Part of the Robin Radic's PHP packages.
  *
- * @author      Robin Radic
- * @license     MIT
- * @copyright   2011-2015, Robin Radic
- * @link        http://radic.mit-license.org
+ * MIT License and copyright information bundled with this package
+ * in the LICENSE file or visit http://radic.mit-license.com
  */
 namespace Laradic\Support;
 
@@ -16,9 +13,15 @@ use RecursiveIteratorIterator;
 use RegexIterator;
 
 /**
- * Class Filesystem
+ * Extends the Laravel Filesystem with extra functionality like recursive glob and recursive search.
  *
- * @package     Support
+ * @package        Laradic\Support
+ * @version        1.0.0
+ * @author         Robin Radic
+ * @license        MIT License
+ * @copyright      2015, Robin Radic
+ * @link           https://github.com/robinradic
+ * {@inheritdoc}
  */
 class Filesystem extends BaseFS
 {

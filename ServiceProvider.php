@@ -1,25 +1,26 @@
-<?php namespace Laradic\Support;
-
+<?php
 /**
- * Part of the Radic packges.
- * Licensed under the MIT license.
+ * Part of the Robin Radic's PHP packages.
  *
- * @package        Radic/Dev
- * @author         Robin Radic
- * @license        MIT
- * @copyright  (c) 2011-2015, Robin Radic
- * @link           http://radic.mit-license.org
+ * MIT License and copyright information bundled with this package
+ * in the LICENSE file or visit http://radic.mit-license.com
  */
+namespace Laradic\Support;
+
 use App;
 use Exception;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
- * ServiceProvider
+ * Extends the Laravel service provider with extra functionality
  *
- * @package     Laradic\Support
- *
+ * @package        Laradic\Support
+ * @version        1.0.0
+ * @author         Robin Radic
+ * @license        MIT License
+ * @copyright      2015, Robin Radic
+ * @link           https://github.com/robinradic
  */
 abstract class ServiceProvider extends BaseServiceProvider
 {
@@ -73,8 +74,10 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     protected $routeMiddlewares = [];
 
+    /**
+     * @var array
+     */
     protected $migrationDirs = [];
-
 
 
     /**
@@ -162,16 +165,11 @@ abstract class ServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * registerProvider
+     * alias
      *
-     * @deprecated
-     * @param $str
+     * @param $name
+     * @param $fullyQualifiedName
      */
-    public function registerProvider($str)
-    {
-        $this->app->register($str);
-    }
-
     protected function alias($name, $fullyQualifiedName)
     {
         AliasLoader::getInstance()->alias($name, $fullyQualifiedName);

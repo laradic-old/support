@@ -1,19 +1,21 @@
 <?php
 /**
- * Part of the Laradic packages.
- * MIT License and copyright information bundled with this package in the LICENSE file.
+ * Part of the Robin Radic's PHP packages.
  *
- * @author      Robin Radic
- * @license     MIT
- * @copyright   2011-2015, Robin Radic
- * @link        http://radic.mit-license.org
+ * MIT License and copyright information bundled with this package
+ * in the LICENSE file or visit http://radic.mit-license.com
  */
 namespace Laradic\Support;
 
 /**
- * Class TemplateParser
+ * This is the TemplateParser class.
  *
- * @package     Laradic\Support
+ * @package        Laradic\Support
+ * @version        1.0.0
+ * @author         Robin Radic
+ * @license        MIT License
+ * @copyright      2015, Robin Radic
+ * @link           https://github.com/robinradic
  */
 class TemplateParser
 {
@@ -51,8 +53,8 @@ class TemplateParser
     /**
      * Instanciates the class
      *
-     * @param \Illuminate\Filesystem\Filesystem $files
-     * @param null                              $sourceDir
+     * @param \Laradic\Support\Filesystem $files
+     * @param string                      $sourceDir
      */
     public function __construct(Filesystem $files, $sourceDir)
     {
@@ -68,15 +70,16 @@ class TemplateParser
     /**
      * Copies a parsed stub file to the directory
      *
+     * @deprecated
      * @param string|string[] $file   The source file path(s)
      * @param null|string     $to     The absolute or relative path to write the file to
      * @param array           $values The template variables
      */
-    public function copy($file, $to = null, array $values = [])
+    public function copy($file, $to = null, array $values = [ ])
     {
         if ( is_array($file) )
         {
-            foreach ($file as $_file)
+            foreach ( $file as $_file )
             {
                 $this->copy($_file, $to, $values);
             }
@@ -123,28 +126,37 @@ class TemplateParser
         }
 
         $this->files->put($destinationFilePath, $this->parse($content, $values));
+
         return $this;
     }
 
-    public function copyDirectory($to, $from = null, array $values = [])
+    /**
+     * copyDirectory
+     *
+     * @deprecated
+     * @param       $to
+     * @param null  $from
+     * @param array $values
+     */
+    public function copyDirectory($to, $from = null, array $values = [ ])
     {
         $from  = is_null($from) ? $this->sourceDir : $from;
         $files = $this->files->rglob(Path::join($from, '*'));
         $dirs  = $this->files->rglob(Path::join($from, '*'), GLOB_ONLYDIR);
         $this->files->makeDirectory(realpath($to), 0755, true);
         # VarDumper::dump(compact('to', 'from', 'dirs', 'files'));
-        foreach ($dirs as $dir)
+        foreach ( $dirs as $dir )
         {
-            $toPath = Path::join($to, Str::remove(realpath($dir), realpath($from) . '/'));
+            $toPath = Path::join($to, String::remove(realpath($dir), realpath($from) . '/'));
             $this->files->makeDirectory($toPath, 0755, true);
-            #VarDumper::dump("Created dir $toPath [$dir]" . Str::remove(realpath($dir), realpath($from) . '/'));
+            #VarDumper::dump("Created dir $toPath [$dir]" . String::remove(realpath($dir), realpath($from) . '/'));
         }
 
-        foreach ($files as $file)
+        foreach ( $files as $file )
         {
             $filePath = realpath($file);
-            $fromPath = Str::remove($file, $from . '/');
-            #$toPath = Path::join($to, Str::remove($filePath, realpath($from) . '/'));
+            $fromPath = String::remove($file, $from . '/');
+            #$toPath = Path::join($to, String::remove($filePath, realpath($from) . '/'));
             if ( $this->files->isDirectory($file) )
             {
                 continue;
@@ -164,15 +176,15 @@ class TemplateParser
      * @param array $values
      * @return mixed
      */
-    public function parse($str, array $values = [])
+    public function parse($str, array $values = [ ])
     {
         $keys = array();
 
         $values = array_merge($this->values, $values);
 
-        foreach ($values as $key => $value)
+        foreach ( $values as $key => $value )
         {
-            $keys[] = $this->openDelimiter . $key . $this->closeDelimiter;
+            $keys[ ] = $this->openDelimiter . $key . $this->closeDelimiter;
         }
 
         return str_replace($keys, $values, $str);

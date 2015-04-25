@@ -1,6 +1,9 @@
 <?php
 /**
- * Part of the Radic packages.
+ * Part of the Robin Radic's PHP packages.
+ *
+ * MIT License and copyright information bundled with this package
+ * in the LICENSE file or visit http://radic.mit-license.com
  */
 namespace Laradic\Support;
 
@@ -8,31 +11,38 @@ use Laradic\Support\Contracts\Dependable;
 use Laradic\Support\Contracts\Sortable;
 
 /**
- * Class Sorter
+ * Provides dependency sorter functionality
  *
- * @package     Laradic\Support
- * @author      Robin Radic
- * @license     MIT
- * @copyright   2011-2015, Robin Radic
- * @link        http://radic.mit-license.org
+ * @package        Laradic\Support
+ * @version        1.0.0
+ * @author         Robin Radic
+ * @license        MIT License
+ * @copyright      2015, Robin Radic
+ * @link           https://github.com/robinradic
  */
 class Sorter implements Sortable
 {
 
-    private $items = [];
+    protected $items = [];
 
-    private $dependencies = [];
+    protected $dependencies = [];
 
-    private $dependsOn = [];
+    protected $dependsOn = [];
 
-    private $missing = [];
+    protected $missing = [];
 
-    private $circular = [];
+    protected $circular = [];
 
-    private $hits = [];
+    protected $hits = [];
 
-    private $sorted = [];
+    protected $sorted = [];
 
+    /**
+     * add
+     *
+     * @param array $items
+     * @param bool  $allowNumericKey
+     */
     public function add(array $items, $allowNumericKey = false)
     {
         foreach ($items as $item => $_deps)
@@ -48,12 +58,23 @@ class Sorter implements Sortable
         }
     }
 
+    /**
+     * addItem
+     *
+     * @param      $item
+     * @param null $_deps
+     */
     public function addItem($item, $_deps = null)
     {
         list($item, $_deps) = $this->prepNewItem($item, $_deps);
         $this->setItem($item, $_deps);
     }
 
+    /**
+     * sort
+     *
+     * @return array
+     */
     public function sort()
     {
         $this->sorted = array();
@@ -76,6 +97,12 @@ class Sorter implements Sortable
         return $this->sorted;
     }
 
+    /**
+     * setItem
+     *
+     * @param       $item
+     * @param array $_deps
+     */
     protected function setItem($item, array $_deps)
     {
         $this->items[] = $item;
@@ -90,6 +117,13 @@ class Sorter implements Sortable
         $this->hits[$item]         = 0;
     }
 
+    /**
+     * prepNewItem
+     *
+     * @param $item
+     * @param $_deps
+     * @return array
+     */
     protected function prepNewItem($item, $_deps)
     {
         if ( $item instanceof Dependable )
@@ -113,6 +147,12 @@ class Sorter implements Sortable
         return [$item, $_deps];
     }
 
+    /**
+     * satisfied
+     *
+     * @param $item
+     * @return bool
+     */
     protected function satisfied($item)
     {
         $pass = true;
@@ -155,31 +195,65 @@ class Sorter implements Sortable
         return $pass;
     }
 
+    /**
+     * setSorted
+     *
+     * @param $item
+     */
     protected function setSorted($item)
     {
         $this->sorted[] = $item;
     }
 
+    /**
+     * exists
+     *
+     * @param $item
+     * @return bool
+     */
     protected function exists($item)
     {
         return isset($this->items[$item]);
     }
 
+    /**
+     * removeDependents
+     *
+     * @param $item
+     */
     protected function removeDependents($item)
     {
         unset($this->dependencies[$item]);
     }
 
+    /**
+     * setCircular
+     *
+     * @param $item
+     * @param $item2
+     */
     protected function setCircular($item, $item2)
     {
         $this->circular[$item][$item2] = $item2;
     }
 
+    /**
+     * setMissing
+     *
+     * @param $item
+     * @param $item2
+     */
     protected function setMissing($item, $item2)
     {
         $this->missing[$item][$item2] = $item2;
     }
 
+    /**
+     * setFound
+     *
+     * @param $item
+     * @param $item2
+     */
     protected function setFound($item, $item2)
     {
         if ( isset($this->missing[$item]) )
@@ -192,26 +266,57 @@ class Sorter implements Sortable
         }
     }
 
+    /**
+     * isSorted
+     *
+     * @param $item
+     * @return bool
+     */
     protected function isSorted($item)
     {
         return in_array($item, $this->sorted);
     }
 
+    /**
+     * isDependent
+     *
+     * @param mixed|string $item
+     * @param mixed|string $item2
+     * @return bool
+     */
     public function isDependent($item, $item2)
     {
         return isset($this->dependsOn[$item][$item2]);
     }
 
+    /**
+     * hasDependents
+     *
+     * @param mixed|string $item
+     * @return bool
+     */
     public function hasDependents($item)
     {
         return isset($this->dependencies[$item]);
     }
 
+    /**
+     * hasMissing
+     *
+     * @param mixed|string $item
+     * @return bool
+     */
     public function hasMissing($item)
     {
         return isset($this->missing[$item]);
     }
 
+    /**
+     * isMissing
+     *
+     * @param mixed|string $dep
+     * @return bool
+     */
     public function isMissing($dep)
     {
         foreach ($this->missing as $item => $deps)
@@ -223,11 +328,23 @@ class Sorter implements Sortable
         }
     }
 
+    /**
+     * hasCircular
+     *
+     * @param mixed|string $item
+     * @return bool
+     */
     public function hasCircular($item)
     {
         return isset($this->circular[$item]);
     }
 
+    /**
+     * isCircular
+     *
+     * @param mixed|string $dep
+     * @return bool
+     */
     public function isCircular($dep)
     {
         foreach ($this->circular as $item => $deps)
@@ -239,11 +356,23 @@ class Sorter implements Sortable
         }
     }
 
+    /**
+     * getDependents
+     *
+     * @param $item
+     * @return mixed
+     */
     public function getDependents($item)
     {
         return $this->dependencies[$item];
     }
 
+    /**
+     * getMissing
+     *
+     * @param null $str
+     * @return array
+     */
     public function getMissing($str = null)
     {
         if ( $str )
@@ -254,6 +383,12 @@ class Sorter implements Sortable
         return $this->missing;
     }
 
+    /**
+     * getCircular
+     *
+     * @param null $str
+     * @return array
+     */
     public function getCircular($str = null)
     {
         if ( $str )
@@ -264,6 +399,12 @@ class Sorter implements Sortable
         return $this->circular;
     }
 
+    /**
+     * getHits
+     *
+     * @param null $str
+     * @return array
+     */
     public function getHits($str = null)
     {
         if ( $str )

@@ -4,9 +4,13 @@
  */
 namespace Laradic\Support;
 
-use Underscore\Types\Arrays;
+use Underscore\Types\Arrays as BaseArrays;
+
 /**
- * Arrays
+ * Array helper functionality.
+ * Combines all functionality from:
+ * - Illuminate\Support\Arr
+ * - Underscore\Types\Arrays
  *
  * {@inheritdoc}
  * @package    Laradic\Support
@@ -16,8 +20,20 @@ use Underscore\Types\Arrays;
  * @link       http://radic.mit-license.org
  *
  */
-class Arr extends Arrays
+class Arrays
 {
+
+    public function __call($name, $arguments)
+    {
+        if ( method_exists('Illuminate\Support\Arr', $name) )
+        {
+            return forward_static_call_array([ 'Underscore\Types\Arrays', $name ], $arguments);
+        }
+        elseif ( method_exists('Underscore\Methods\ArrayMethods', $name) )
+        {
+            return forward_static_call_array([ 'Underscore\Types\Arrays', $name ], $arguments);
+        }
+    }
 
     public static function unflatten(array $array, $delimiter = '.') {
         $unflattenedArray = array();

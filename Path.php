@@ -13,9 +13,18 @@
 use Webmozart\PathUtil\Path as BasePath;
 
 /**
- * Path
+ * Provides utility methods for handling path strings.
  *
- * @package Laradic\Support${NAME}
+ * The methods in this class are able to deal with both UNIX and Windows paths
+ * with both forward and backward slashes. All methods return normalized parts
+ * containing only forward slashes and no excess "." and ".." segments.
+ *
+ * @package        Laradic\Support
+ * @version        1.0.0
+ * @author         Robin Radic
+ * @license        MIT License
+ * @copyright      2015, Robin Radic
+ * @link           https://github.com/robinradic
  */
 class Path extends BasePath
 {
@@ -23,7 +32,7 @@ class Path extends BasePath
     /**
      * Joins a split file system path.
      *
-     * @param mixed $path Array or parameters of strings , The split path.
+     * @param string $path,...  Array or parameters of strings , The split path.
      *
      * @return string The joined path.
      */

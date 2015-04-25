@@ -45,6 +45,11 @@ if ( ! function_exists('path_get_directory') )
 
 if ( ! function_exists('path_get_extension') )
 {
+    /**
+     * path_get_extension
+     *
+     * @return mixed
+     */
     function path_get_extension()
     {
         return forward_static_call_array(['Laradic\Support\Path', 'getExtension'], func_get_args());
