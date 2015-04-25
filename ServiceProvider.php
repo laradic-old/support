@@ -84,7 +84,6 @@ abstract class ServiceProvider extends BaseServiceProvider
      * Boots the service provider.
      *
      * @return \Illuminate\Foundation\Application
-     * @throws Exception if property $dir is not set
      */
     public function boot()
     {

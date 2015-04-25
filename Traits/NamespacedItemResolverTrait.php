@@ -7,7 +7,7 @@ trait NamespacedItemResolverTrait {
      *
      * @var array
      */
-    protected $parsed = array();
+    protected $parsedNamespacedKeys = array();
 
     /**
      * Parse a key into namespace, group, and item.
@@ -20,9 +20,9 @@ trait NamespacedItemResolverTrait {
         // If we've already parsed the given key, we'll return the cached version we
         // already have, as this will save us some processing. We cache off every
         // key we parse so we can quickly return it on all subsequent requests.
-        if (isset($this->parsed[$key]))
+        if (isset($this->parsedNamespacedKeys[$key]))
         {
-            return $this->parsed[$key];
+            return $this->parsedNamespacedKeys[$key];
         }
 
         // If the key does not contain a double colon, it means the key is not in a
@@ -42,7 +42,7 @@ trait NamespacedItemResolverTrait {
         // Once we have the parsed array of this key's elements, such as its groups
         // and namespace, we will cache each array inside a simple list that has
         // the key and the parsed array for quick look-ups for later requests.
-        return $this->parsed[$key] = $parsed;
+        return $this->parsedNamespacedKeys[$key] = $parsed;
     }
 
     /**
@@ -103,7 +103,7 @@ trait NamespacedItemResolverTrait {
      */
     public function setParsedKey($key, $parsed)
     {
-        $this->parsed[$key] = $parsed;
+        $this->parsedNamespacedKeys[$key] = $parsed;
     }
 
 }

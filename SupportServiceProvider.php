@@ -1,29 +1,30 @@
 <?php
 /**
- * Part of the Laradic packages.
- * MIT License and copyright information bundled with this package in the LICENSE file.
+ * Part of the Robin Radic's PHP packages.
  *
- * @author      Robin Radic
- * @license     MIT
- * @copyright   2011-2015, Robin Radic
- * @link        http://radic.mit-license.org
+ * MIT License and copyright information bundled with this package
+ * in the LICENSE file or visit http://radic.mit-license.com
  */
 namespace Laradic\Support;
 
 /**
- * Class SupportServiceProvider
- *
- * @package     Support
+ * {@inheritdoc}
  */
 class SupportServiceProvider extends ServiceProvider
 {
 
+    /**
+     * {@inheritdoc}
+     */
     public function boot()
     {
         /** @var \Illuminate\Foundation\Application $app */
         $app = parent::boot();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function register()
     {
         /** @var \Illuminate\Foundation\Application $app */
