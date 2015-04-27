@@ -59,7 +59,7 @@ use Stringy\Stringy;
  * @method static mixed random($length = 16)
  * @method static mixed quickRandom($length)
  * @method static mixed singular($value)
- * @method static mixed slug($title, $separator)
+ * @method static mixed slug($title, $separator = '-')
  * @method static mixed snake($value, $delimiter)
  * @method static mixed startsWith($haystack, $needles)
  * @method static mixed studly($value)

@@ -27,14 +27,9 @@
         "webmozart/path-util": "~1.0",
         "danielstjules/stringy": "1.9.*"
     },
-    "require-dev": {
-        "laradic/dev": "dev-master"
-    },
-    "scripts": {
-    },
     "autoload": {
         "psr-4": {
-            "Laradic\\Support\\": ""
+            "Laradic\\Support\\": "src/"
         }
     }
 }

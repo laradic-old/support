@@ -7,6 +7,8 @@
  */
 namespace Laradic\Support;
 
+use Laradic\Support\Contracts\Parser;
+
 /**
  * This is the TemplateParser class.
  *
@@ -17,7 +19,7 @@ namespace Laradic\Support;
  * @copyright      2015, Robin Radic
  * @link           https://github.com/robinradic
  */
-class TemplateParser
+class TemplateParser implements Parser
 {
 
     /**

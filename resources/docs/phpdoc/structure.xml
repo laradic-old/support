@@ -1468,7 +1468,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
     <class final="false" abstract="true" namespace="Laradic\Support" line="21" package="Laradic\Support${NAME}">
       <extends>\Illuminate\Support\ServiceProvider</extends>
       <name>AbstractConsoleProvider</name>
-      <full_name>\Laradic\Support\AbstractConsoleProvider</full_name>
+      <full_name>\Laradic\Console\AggregateConsoleProvider</full_name>
       <docblock line="21">
         <description>ServiceProvider</description>
         <long-description></long-description>
@@ -1476,7 +1476,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </docblock>
       <property static="false" visibility="protected" namespace="Laradic\Support" line="30" package="Laradic\Support${NAME}">
         <name>$defer</name>
-        <full_name>\Laradic\Support\AbstractConsoleProvider::defer</full_name>
+        <full_name>\Laradic\Console\AggregateConsoleProvider::defer</full_name>
         <default>true</default>
         <docblock line="30">
           <description>Indicates if loading of the provider is deferred.</description>
@@ -1488,7 +1488,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </property>
       <property static="false" visibility="protected" namespace="Laradic\Support" line="37" package="Laradic\Support${NAME}">
         <name>$namespace</name>
-        <full_name>\Laradic\Support\AbstractConsoleProvider::namespace</full_name>
+        <full_name>\Laradic\Console\AggregateConsoleProvider::namespace</full_name>
         <default></default>
         <docblock line="37">
           <description>The namespace where the commands are</description>
@@ -1500,7 +1500,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </property>
       <property static="false" visibility="protected" namespace="Laradic\Support" line="44" package="Laradic\Support${NAME}">
         <name>$commands</name>
-        <full_name>\Laradic\Support\AbstractConsoleProvider::commands</full_name>
+        <full_name>\Laradic\Console\AggregateConsoleProvider::commands</full_name>
         <default></default>
         <docblock line="44">
           <description>The commands to be registered.</description>
@@ -1512,7 +1512,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Laradic\Support" line="51" package="Laradic\Support${NAME}">
         <name>register</name>
-        <full_name>\Laradic\Support\AbstractConsoleProvider::register()</full_name>
+        <full_name>\Laradic\Console\AggregateConsoleProvider::register()</full_name>
         <docblock line="51">
           <description>Register the service provider.</description>
           <long-description></long-description>
@@ -1523,7 +1523,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="protected" namespace="Laradic\Support" line="80" package="Laradic\Support${NAME}">
         <name>registerCommand</name>
-        <full_name>\Laradic\Support\AbstractConsoleProvider::registerCommand()</full_name>
+        <full_name>\Laradic\Console\AggregateConsoleProvider::registerCommand()</full_name>
         <docblock line="80">
           <description>Register the command.</description>
           <long-description></long-description>
@@ -1546,7 +1546,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Laradic\Support" line="95" package="Laradic\Support${NAME}">
         <name>provides</name>
-        <full_name>\Laradic\Support\AbstractConsoleProvider::provides()</full_name>
+        <full_name>\Laradic\Console\AggregateConsoleProvider::provides()</full_name>
         <docblock line="95">
           <description>Get the services provided by the provider.</description>
           <long-description></long-description>
@@ -3715,7 +3715,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
     <class final="false" abstract="false" namespace="Laradic\Support" line="20" package="Laradic\Support">
       <extends>\Illuminate\Console\Command</extends>
       <name>AbstractConsoleCommand</name>
-      <full_name>\Laradic\Support\AbstractConsoleCommand</full_name>
+      <full_name>\Laradic\Console\Command</full_name>
       <docblock line="20">
         <description>Class AbstractConsoleCommand</description>
         <long-description></long-description>
@@ -3727,7 +3727,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </docblock>
       <property static="false" visibility="protected" namespace="Laradic\Support" line="26" package="Laradic\Support">
         <name>$colors</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::colors</full_name>
+        <full_name>\Laradic\Console\Command::colors</full_name>
         <default></default>
         <docblock line="26">
           <description></description>
@@ -3739,7 +3739,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Laradic\Support" line="32" package="Laradic\Support">
         <name>__construct</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::__construct()</full_name>
+        <full_name>\Laradic\Console\Command::__construct()</full_name>
         <docblock line="32">
           <description>Instanciates the class</description>
           <long-description></long-description>
@@ -3747,7 +3747,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Laradic\Support" line="53" package="Laradic\Support">
         <name>dump</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::dump()</full_name>
+        <full_name>\Laradic\Console\Command::dump()</full_name>
         <docblock line="53">
           <description></description>
           <long-description></long-description>
@@ -3758,7 +3758,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="protected" namespace="Laradic\Support" line="67" package="Laradic\Support">
         <name>style</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::style()</full_name>
+        <full_name>\Laradic\Console\Command::style()</full_name>
         <docblock line="67">
           <description>style</description>
           <long-description></long-description>
@@ -3784,7 +3784,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Laradic\Support" line="82" package="Laradic\Support">
         <name>select</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::select()</full_name>
+        <full_name>\Laradic\Console\Command::select()</full_name>
         <docblock line="82">
           <description>select</description>
           <long-description></long-description>
@@ -3834,7 +3834,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="protected" namespace="Laradic\Support" line="108" package="Laradic\Support">
         <name>arrayTable</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::arrayTable()</full_name>
+        <full_name>\Laradic\Console\Command::arrayTable()</full_name>
         <docblock line="108">
           <description>arrayTable</description>
           <long-description></long-description>
@@ -3848,7 +3848,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Laradic\Support" line="130" package="Laradic\Support">
         <name>confirm</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::confirm()</full_name>
+        <full_name>\Laradic\Console\Command::confirm()</full_name>
         <docblock line="130">
           <description>confirm</description>
           <long-description></long-description>
@@ -3875,7 +3875,7 @@ in the LICENSE file or visit http://radic.mit-license.com</long-description>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Laradic\Support" line="138" package="Laradic\Support">
         <name>ask</name>
-        <full_name>\Laradic\Support\AbstractConsoleCommand::ask()</full_name>
+        <full_name>\Laradic\Console\Command::ask()</full_name>
         <docblock line="138">
           <description></description>
           <long-description></long-description>
