@@ -12,7 +12,7 @@ Laradic Support
 [![Goto Repository](http://img.shields.io/badge/goto-repo-orange.svg?style=flat-square)](https://github.com/laradic/support)
 
 --------------------------
-Version 1.1
+Version 1.2
 -----------
 
 **Laravel 5** support package.
@@ -29,7 +29,7 @@ Version 1.1
 ## Installation
 #### Composer
 ```JSON
-"laradic/support": "~1.1"
+"laradic/support": "~1.2"
 ```
   
 #### Laravel
