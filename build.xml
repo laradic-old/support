@@ -187,9 +187,10 @@
     </target>
 
     <target name="phpdoc" depends="prepare" description="Generate project documentation using phpDocumentator">
-        <exec executable="${toolsdir}phpdoc.phar" dir="${builddir}" logoutput="true">
+        <exec executable="${toolsdir}phpdoc.phar" dir="${project.basedir}" logoutput="true">
             <arg line="-t ./resources/docs/phpdoc"/>
-            <arg line="-d ../src"/>
+            <arg line="-d ./src"/>
+            <arg line="--cache-folder=./resources/build/phpdoc"/>
             <arg line="--template=xml"/>
         </exec>
     </target>
