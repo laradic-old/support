@@ -94,7 +94,7 @@ abstract class ServiceProvider extends BaseServiceProvider
         {
             foreach ($this->configFiles as $fileName)
             {
-                $configPath = $this->dir . $this->resourcesPath . '/config/' . $fileName . '.php';
+                $configPath = $this->dir . '/' . $this->resourcesPath . '/config/' . $fileName . '.php';
                 $this->publishes([$configPath => config_path($fileName . '.php')], 'config');
             }
         }

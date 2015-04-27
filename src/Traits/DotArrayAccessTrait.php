@@ -50,7 +50,7 @@ trait DotArrayAccessTrait
      * @param  mixed $value
      * @return $this
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value = null)
     {
         if ( is_array($key) )
         {

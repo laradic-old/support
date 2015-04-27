@@ -41,12 +41,18 @@ class Path extends BasePath
         $args = func_get_args();
         if(func_num_args() === 1 and is_array($args[0]))
         {
-            return join(DIRECTORY_SEPARATOR, $args[0]);
+            $args = $args[0];
         }
-        else
+        foreach($args as $i => $arg)
         {
-            return join(DIRECTORY_SEPARATOR, $args);
+            $args[$i] = String::removeRight($args[$i], '/');
+            if($i > 0)
+            {
+                $args[ $i ] = String::removeLeft($args[$i], '/');
+            }
         }
+        return join(DIRECTORY_SEPARATOR, $args);
+
 
     }
 }
