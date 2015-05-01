@@ -38,6 +38,7 @@ class Path extends BasePath
      */
     public static function join()
     {
+
         $args = func_get_args();
         if(func_num_args() === 1 and is_array($args[0]))
         {

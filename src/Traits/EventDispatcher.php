@@ -5,7 +5,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 /**
  * Part of the Radic packages.
  */
-trait EventDispatcherTrait
+trait EventDispatcher
 {
 
     /** @var \Illuminate\Contracts\Events\Dispatcher */

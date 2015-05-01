@@ -1,6 +1,7 @@
 <?php namespace Laradic\Support\Traits;
 
-trait NamespacedItemResolverTrait {
+trait NamespacedItemResolver
+{
 
     /**
      * A cache of the parsed items.
@@ -12,7 +13,7 @@ trait NamespacedItemResolverTrait {
     /**
      * Parse a key into namespace, group, and item.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return array
      */
     public function parseKey($key)
@@ -20,15 +21,15 @@ trait NamespacedItemResolverTrait {
         // If we've already parsed the given key, we'll return the cached version we
         // already have, as this will save us some processing. We cache off every
         // key we parse so we can quickly return it on all subsequent requests.
-        if (isset($this->parsedNamespacedKeys[$key]))
+        if ( isset($this->parsedNamespacedKeys[ $key ]) )
         {
-            return $this->parsedNamespacedKeys[$key];
+            return $this->parsedNamespacedKeys[ $key ];
         }
 
         // If the key does not contain a double colon, it means the key is not in a
         // namespace, and is just a regular configuration item. Namespaces are a
         // tool for organizing configuration items for things such as modules.
-        if (strpos($key, '::') === false)
+        if ( strpos($key, '::') === false )
         {
             $segments = explode('.', $key);
 
@@ -42,13 +43,13 @@ trait NamespacedItemResolverTrait {
         // Once we have the parsed array of this key's elements, such as its groups
         // and namespace, we will cache each array inside a simple list that has
         // the key and the parsed array for quick look-ups for later requests.
-        return $this->parsedNamespacedKeys[$key] = $parsed;
+        return $this->parsedNamespacedKeys[ $key ] = $parsed;
     }
 
     /**
      * Parse an array of basic segments.
      *
-     * @param  array  $segments
+     * @param  array $segments
      * @return array
      */
     protected function parseBasicSegments(array $segments)
@@ -56,11 +57,11 @@ trait NamespacedItemResolverTrait {
         // The first segment in a basic array will always be the group, so we can go
         // ahead and grab that segment. If there is only one total segment we are
         // just pulling an entire group out of the array and not a single item.
-        $group = $segments[0];
+        $group = $segments[ 0 ];
 
-        if (count($segments) == 1)
+        if ( count($segments) == 1 )
         {
-            return array(null, $group, null);
+            return array( null, $group, null );
         }
 
         // If there is more than one segment in this group, it means we are pulling
@@ -70,14 +71,14 @@ trait NamespacedItemResolverTrait {
         {
             $item = implode('.', array_slice($segments, 1));
 
-            return array(null, $group, $item);
+            return array( null, $group, $item );
         }
     }
 
     /**
      * Parse an array of namespaced segments.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return array
      */
     protected function parseNamespacedSegments($key)
@@ -91,19 +92,18 @@ trait NamespacedItemResolverTrait {
 
         $groupAndItem = array_slice($this->parseBasicSegments($itemSegments), 1);
 
-        return array_merge(array($namespace), $groupAndItem);
+        return array_merge(array( $namespace ), $groupAndItem);
     }
 
     /**
      * Set the parsed value of a key.
      *
-     * @param  string  $key
-     * @param  array   $parsed
+     * @param  string $key
+     * @param  array  $parsed
      * @return void
      */
     public function setParsedKey($key, $parsed)
     {
-        $this->parsedNamespacedKeys[$key] = $parsed;
+        $this->parsedNamespacedKeys[ $key ] = $parsed;
     }
-
 }

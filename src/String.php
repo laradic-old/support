@@ -7,7 +7,7 @@
  */
 namespace Laradic\Support;
 
-use Stringy\Stringy;
+use Laradic\Support\Stringy\Stringy;
 
 /**
  * String helper functionality.
@@ -124,6 +124,7 @@ use Stringy\Stringy;
  * @method static mixed isAlphanumeric
  * @method static mixed isHexadecimal
  * @method static mixed isBlank
+ * @method static mixed namespacedStudly()
  * @method static mixed isJson
  * @method static mixed isLowerCase
  * @method static mixed isUpperCase
@@ -184,4 +185,6 @@ class String
     {
         return call_user_func_array([ new static(), $name ], $arguments);
     }
+
+
 }

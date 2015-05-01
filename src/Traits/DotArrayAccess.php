@@ -17,8 +17,13 @@ namespace Laradic\Support\Traits;
  * @copyright      2015, Robin Radic
  * @link           https://github.com/robinradic
  */
-trait DotArrayAccessTrait
+trait DotArrayAccess
 {
+    /**
+     * getArrayAccessor
+     *
+     * @return mixed
+     */
     abstract protected function getArrayAccessor();
 
     /**

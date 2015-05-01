@@ -41,13 +41,13 @@ class Sorter implements Sortable
      * add
      *
      * @param array $items
-     * @param bool  $allowNumericKey
+     * @param bool  $allowNumericitem
      */
-    public function add(array $items, $allowNumericKey = false)
+    public function add(array $items, $allowNumericitem = false)
     {
         foreach ($items as $item => $_deps)
         {
-            if ( ! $allowNumericKey and is_int($item) )
+            if ( ! $allowNumericitem and is_int($item) )
             {
                 $this->addItem($_deps);
             }
@@ -275,6 +275,11 @@ class Sorter implements Sortable
     protected function isSorted($item)
     {
         return in_array($item, $this->sorted);
+    }
+
+    public function requiredBy($item)
+    {
+        return $this->dependsOn[$item];
     }
 
     /**

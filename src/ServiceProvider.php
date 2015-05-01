@@ -32,7 +32,6 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     protected $app;
 
-
     /**
      * Array of configuration files
      *
@@ -47,7 +46,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      * Path to resources folder, relative to $dir
      * @var string
      */
-    protected $resourcesPath = 'resources';
+    protected $resourcesPath = '../resources';
 
     /**
      * @var array
@@ -78,6 +77,11 @@ abstract class ServiceProvider extends BaseServiceProvider
      * @var array
      */
     protected $migrationDirs = [];
+
+    /**
+     * @var array
+     */
+    protected $provides = [];
 
 
     /**
@@ -172,5 +176,10 @@ abstract class ServiceProvider extends BaseServiceProvider
     protected function alias($name, $fullyQualifiedName)
     {
         AliasLoader::getInstance()->alias($name, $fullyQualifiedName);
+    }
+
+    public function provides()
+    {
+        return $this->provides;
     }
 }
