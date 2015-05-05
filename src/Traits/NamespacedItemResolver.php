@@ -37,6 +37,7 @@ trait NamespacedItemResolver
         }
         else
         {
+
             $parsed = $this->parseNamespacedSegments($key);
         }
 

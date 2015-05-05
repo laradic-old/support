@@ -279,7 +279,7 @@ class Sorter implements Sortable
 
     public function requiredBy($item)
     {
-        return $this->dependsOn[$item];
+        return isset($this->dependsOn[$item]) ? $this->dependsOn[$item] : [];
     }
 
     /**
