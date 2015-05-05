@@ -8,7 +8,6 @@
 namespace Laradic\Support;
 
 use App;
-use Exception;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
@@ -37,13 +36,14 @@ abstract class ServiceProvider extends BaseServiceProvider
      *
      * @var array
      */
-    protected $configFiles = [];
+    protected $configFiles = [ ];
 
     /** @var string */
     protected $dir;
 
     /**
      * Path to resources folder, relative to $dir
+     *
      * @var string
      */
     protected $resourcesPath = '../resources';
@@ -51,37 +51,37 @@ abstract class ServiceProvider extends BaseServiceProvider
     /**
      * @var array
      */
-    protected $providers = [];
+    protected $providers = [ ];
 
     /**
      * @var array
      */
-    protected $aliases = [];
+    protected $aliases = [ ];
 
     /**
      * @var array
      */
-    protected $middlewares = [];
+    protected $middlewares = [ ];
 
     /**
      * @var array
      */
-    protected $prependMiddlewares = [];
+    protected $prependMiddlewares = [ ];
 
     /**
      * @var array
      */
-    protected $routeMiddlewares = [];
+    protected $routeMiddlewares = [ ];
 
     /**
      * @var array
      */
-    protected $migrationDirs = [];
+    protected $migrationDirs = [ ];
 
     /**
      * @var array
      */
-    protected $provides = [];
+    protected $provides = [ ];
 
 
     /**
@@ -96,10 +96,10 @@ abstract class ServiceProvider extends BaseServiceProvider
 
         if ( isset($this->dir) and isset($this->configFiles) and is_array($this->configFiles) )
         {
-            foreach ($this->configFiles as $fileName)
+            foreach ( $this->configFiles as $fileName )
             {
                 $configPath = $this->dir . '/' . $this->resourcesPath . '/config/' . $fileName . '.php';
-                $this->publishes([$configPath => config_path($fileName . '.php')], 'config');
+                $this->publishes([ $configPath => config_path($fileName . '.php') ], 'config');
             }
         }
 
@@ -124,44 +124,46 @@ abstract class ServiceProvider extends BaseServiceProvider
 
         if ( isset($this->dir) )
         {
-            foreach ($this->configFiles as $fileName)
+            foreach ( $this->configFiles as $fileName )
             {
                 $configPath = Path::join($this->dir, $this->resourcesPath, 'config', $fileName . '.php');
                 #$configPath = $this->dir . $this->resourcesPath . '/config/' . $fileName . '.php';
                 $this->mergeConfigFrom($configPath, $fileName);
             }
 
-            foreach ($this->migrationDirs as $migrationDir)
+            foreach ( $this->migrationDirs as $migrationDir )
             {
                 $migrationPath = Path::join($this->dir, $this->resourcesPath, $migrationDir);
-                $this->publishes([$migrationPath => base_path('/database/migrations')], 'migrations');
+                $this->publishes([ $migrationPath => base_path('/database/migrations') ], 'migrations');
             }
-
         }
 
-        foreach ($this->prependMiddlewares as $middleware)
+        foreach ( $this->prependMiddlewares as $middleware )
         {
             $kernel->prependMiddleware($middleware);
         }
 
-        foreach ($this->middlewares as $middleware)
+        foreach ( $this->middlewares as $middleware )
         {
             $kernel->pushMiddleware($middleware);
         }
 
-        foreach ($this->routeMiddlewares as $key => $middleware)
+        foreach ( $this->routeMiddlewares as $key => $middleware )
         {
             $router->middleware($key, $middleware);
         }
 
-        foreach ($this->providers as $provider)
+        foreach ( $this->providers as $provider )
         {
             $app->register($provider);
         }
 
-        foreach ($this->aliases as $alias => $full)
+        foreach ( $this->aliases as $alias => $full )
         {
-            $this->alias($alias, $full);
+            $app->booting(function () use ($alias, $full)
+            {
+                $this->alias($alias, $full);
+            });
         }
 
         return $app;
