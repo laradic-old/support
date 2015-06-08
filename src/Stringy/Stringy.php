@@ -32,4 +32,16 @@ class Stringy extends BaseStringy
         $str = implode('\\', array_map('studly_case', explode('/', $this->str)));
         return static::create($str, $this->encoding);
     }
+
+    /**
+     * explode
+     *
+     * @param      $delimiter
+     * @param null $limit
+     * @return array
+     */
+    public function split($delimiter, $limit = null)
+    {
+        return explode($delimiter, $this->str, $limit);
+    }
 }

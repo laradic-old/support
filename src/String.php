@@ -125,6 +125,7 @@ use Laradic\Support\Stringy\Stringy;
  * @method static mixed isHexadecimal
  * @method static mixed isBlank
  * @method static mixed namespacedStudly()
+ * @method static mixed split(string $delimiter, int $limit = null)
  * @method static mixed isJson
  * @method static mixed isLowerCase
  * @method static mixed isUpperCase
@@ -157,11 +158,11 @@ class String
      * Create a new Stringy string instance
      *
      * @param $string
-     * @return \Stringy\Stringy
+     * @return \Laradic\Support\Stringy\Stringy
      */
     public static function create($string)
     {
-        return \Stringy\Stringy::create($string);
+        return Stringy::create($string);
     }
 
 
