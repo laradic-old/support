@@ -52,7 +52,7 @@ class Path extends BasePath
                 $args[ $i ] = String::removeLeft($args[$i], '/');
             }
         }
-        return join(DIRECTORY_SEPARATOR, $args);
+        return implode(DIRECTORY_SEPARATOR, $args);
 
 
     }

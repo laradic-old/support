@@ -29,7 +29,12 @@ class SupportServiceProvider extends ServiceProvider
     {
         /** @var \Illuminate\Foundation\Application $app */
         $app          = parent::register();
+        /*
         $app['files'] = $app->share(function () #Application $app)
+        {
+            return new Filesystem();
+        });*/
+        $app->bind('Laradic\Support\Filesystem', function () #Application $app)
         {
             return new Filesystem();
         });
