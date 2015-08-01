@@ -83,6 +83,8 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     protected $provides = [ ];
 
+    /** @var array */
+    protected $commands = [ ];
 
     /**
      * Boots the service provider.
@@ -164,6 +166,11 @@ abstract class ServiceProvider extends BaseServiceProvider
             {
                 $this->alias($alias, $full);
             });
+        }
+
+        if ( is_array($this->commands) and count($this->commands) > 0 )
+        {
+            $this->commands($this->commands);
         }
 
         return $app;
